@@ -15,28 +15,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\Template.cpp">
+    <ClCompile Include="Template.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\Template.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="RzChromaSDKDefines.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\RzChromaSDKDefines.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="RzChromaSDKTypes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\RzChromaSDKTypes.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="RzErrors.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\RzErrors.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\stdafx.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="Template.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\targetver.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

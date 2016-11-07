@@ -49,8 +49,6 @@ BOOL My_Chroma_Implementation::IsDeviceConnected(RZDEVICEID DeviceId)
 		ChromaSDK::DEVICE_INFO_TYPE DeviceInfo = {};
 		RZRESULT Result = QueryDevice(DeviceId, DeviceInfo);
 
-		ASSERT(Result == RZRESULT_SUCCESS);
-
 		return DeviceInfo.Connected;
 	}
 
@@ -72,7 +70,6 @@ BOOL My_Chroma_Implementation::Initialize()
 		m_ChromaSDKModule = LoadLibrary(CHROMASDKDLL);
 		if (m_ChromaSDKModule == nullptr)
 		{
-			ASSERT(GetLastError() == ERROR_SUCCESS);
 			return FALSE;
 		}
 	}
@@ -289,11 +286,14 @@ BOOL My_Chroma_Implementation::example_mousemat() {
 
 int main() {
 
+	std::cout << "Starting...\n";
 	My_Chroma_Implementation impl_test; //Initialize ChromaSDK
 
 	BOOL test_for_init = impl_test.Initialize(); // Initialize all Chroma devices
 
+
 	if (test_for_init == TRUE) {
+		std::cout << "Chroma Initialized.\n";
 		while (true) { //Running all functions in a loop until you ctrl+c the programm
 			
 			BOOL Keyboard = impl_test.example_keyboard();
@@ -305,6 +305,11 @@ int main() {
 			//If you want to, catch the BOOL Values and display a message if something has gone wrong
 			
 		}
+	}
+	else
+	{
+		std::cout << "Unable to initialize Chroma.\n";
+		std::cin.ignore();
 	}
 
 

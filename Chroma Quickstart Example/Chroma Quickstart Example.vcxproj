@@ -19,48 +19,51 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\Template.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Template.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\RzChromaSDKDefines.h" />
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\RzChromaSDKTypes.h" />
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\RzErrors.h" />
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\stdafx.h" />
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\targetver.h" />
-    <ClInclude Include="D:\tngeb\Documents\Visual Studio 2015\Projects\Projekt5\Projekt5\Template.h" />
+    <ClInclude Include="RzChromaSDKDefines.h" />
+    <ClInclude Include="RzChromaSDKTypes.h" />
+    <ClInclude Include="RzErrors.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Template.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BB97365C-C5DF-49E3-8605-966B25A3B2EA}</ProjectGuid>
     <RootNamespace>ChromaQuickstartExample</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Chroma Quickstart Example</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
