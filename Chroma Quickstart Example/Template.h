@@ -9,9 +9,6 @@
 #define DLL_INTERNAL __declspec( dllexport )
 #endif 
 
-#include "RzChromaSDKDefines.h"
-#include "RzChromaSDKTypes.h"
-#include "RzErrors.h"
 
 // Define all Colours you want
 const COLORREF BLACK = RGB(0, 0, 0);
