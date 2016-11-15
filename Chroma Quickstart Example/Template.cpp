@@ -184,17 +184,23 @@ void My_Chroma_Implementation::ResetEffects(UINT DeviceType)
 
 
 
+
 //Let's start with a Keyboard effect
 
 BOOL My_Chroma_Implementation::example_keyboard() {
-
+	
+	//Choose one of the following methods by just deleting the first and last line :)
+	
+	
+	
+	/* For matrix-based-effect delete this line
 	ChromaSDK::Keyboard::CUSTOM_EFFECT_TYPE Example_keyboard_effect = {}; //Initialize
 
 
-	//The Keyboard Effect is initialized as a 2 dimensional matrix/array
-	//e.g. the ESC-Key is [0][1]
+	//The keyboard effect is initialized as a 2 dimensional matrix/array
+	//e.g. the ESC-key is [0][1]
 	// Source: http://developer.razerzone.com/chroma/razer-chroma-led-profiles/
-	// Take the Super Keyboard as standard, so your programm will work with every Keyboard out of the box 
+	// Take the super keyboard as standard, so your programm will work with every keyboard out of the box 
 
 	for (UINT row = 0; row < ChromaSDK::Keyboard::MAX_ROW; row++) {
 		for (UINT col = 0; col < ChromaSDK::Keyboard::MAX_COLUMN; col++) {
@@ -204,7 +210,7 @@ BOOL My_Chroma_Implementation::example_keyboard() {
 	}
 
 	Example_keyboard_effect.Color[0][1] = RED; //The colormatrix can be overwritten, until you finally apply the effect to the keyboard
-	Example_keyboard_effect.Color[0][1] = BLUE; // Only the last state of the key will be applied. So the ESC-Key will be blue, not red and not orange
+	Example_keyboard_effect.Color[0][1] = BLUE; // Only the last state of the key will be applied. So the ESC-key will be blue, not red and not orange
 
 	
 	//Now we apply the effect to the keyboard
@@ -213,7 +219,38 @@ BOOL My_Chroma_Implementation::example_keyboard() {
 	//You can work with the Result as well, e.g. checking if everythings ok
 
 	return Result_Keyboard;
+	For matrix-based-effect delete this line*/
 
+
+	
+	
+	/*For key-based-effect delete this line
+
+	Keyboard::CUSTOM_KEY_EFFECT_TYPE Example_keyboard_effect_key = {};  //Initialize key-based Effect
+
+	//The keyboard key effect is initialized as a 2 dimensional matrix/array, but this time called by the HIBYTE and the LOBYTE of the key itself
+	//e.g. the ESC-key is [HIBYTE(RZKEY_ESC)][LOBYTE(RZKEY_ESC)]
+	//Use this if you want to light up specific keys
+	//The whole naming scheme can be found in Keyboard::RZKEY of the RzChromaSDKTypes.h
+	//Important! Don't forget the 0x01000000 | before the used COLORREF, otherwise it won't work
+
+
+	Example_keyboard_effect_key.Key[HIBYTE(RZKEY_ESC)][LOBYTE(RZKEY_ESC)] = 0x01000000 | BLUE; // ESC-key will light up blue
+
+	Example_keyboard_effect_key.Key[HIBYTE(RZKEY_1)][LOBYTE(RZKEY_1)] = 0x01000000 | RED; // 1-key will light up red
+
+	Example_keyboard_effect_key.Key[HIBYTE(RZKEY_NUMPAD3)][LOBYTE(RZKEY_NUMPAD3)] = 0x01000000 | GREEN; // Numpad-3-key will light up green
+
+	//Now we apply the effect to the keyboard
+	RZRESULT Result_Keyboard = CreateKeyboardEffect(Keyboard::CHROMA_CUSTOM_KEY, &Example_keyboard_effect_key, NULL);
+
+	//You can work with the Result as well, e.g. checking if everythings ok
+	return Result_Keyboard;
+
+	For key-based-effect delete this line*/
+
+
+	return FALSE;
 }
 
 
@@ -223,9 +260,9 @@ BOOL My_Chroma_Implementation::example_mouse() {
 	ChromaSDK::Mouse::CUSTOM_EFFECT_TYPE2 Example_mouse_effect = {}; // Initialize
 
     //The mouse effect is initialized as a 2 dimensional matrix/array
-    //e.g. the Scroll Wheel is [2][3]
+    //e.g. the scroll wheel is [2][3]
 	// Source: http://developer.razerzone.com/chroma/razer-chroma-led-profiles/
-	// Take the Super Mouse as standard, so your programm will work with every mouse out of the box 
+	// Take the super mouse as standard, so your programm will work with every mouse out of the box 
 
 	for (UINT row = 0; row < ChromaSDK::Mouse::MAX_ROW; row++) {
 		for (UINT col = 0; col < ChromaSDK::Mouse::MAX_COLUMN; col++) {
@@ -234,7 +271,7 @@ BOOL My_Chroma_Implementation::example_mouse() {
 	}
 
 	Example_mouse_effect.Color[2][3] = RED; //The colormatrix can be overwritten, until you finally apply the effect to the keyboard
-	Example_mouse_effect.Color[2][3] = BLUE; // Only the last state of the key will be applied. So the Scroll Wheel will be blue, not red and not orange
+	Example_mouse_effect.Color[2][3] = BLUE; // Only the last state of the key will be applied. So the scroll wheel will be blue, not red and not orange
 
 	//Now we apply the effect to the keyboard
 	RZRESULT Result_Mouse = CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM2, &Example_mouse_effect, nullptr);
@@ -252,7 +289,7 @@ BOOL My_Chroma_Implementation::example_mousemat() {
 	ChromaSDK::Mousepad::CUSTOM_EFFECT_TYPE Example_mousemat_effect = {}; // Initialize
 
 	//The mousepad effect is initialized as a 1 dimensional matrix/array
-	//e.g. the Razer Logo is [14]
+	//e.g. the Razer logo is [14]
 	// Source: http://developer.razerzone.com/chroma/razer-chroma-led-profiles/
 
 	for (UINT count = 0; count < ChromaSDK::Mousepad::MAX_LEDS; count++) {
@@ -286,14 +323,14 @@ BOOL My_Chroma_Implementation::example_mousemat() {
 
 int main() {
 
-	std::cout << "Starting...\n";
+	cout << "Starting...\n";
 	My_Chroma_Implementation impl_test; //Initialize ChromaSDK
 
 	BOOL test_for_init = impl_test.Initialize(); // Initialize all Chroma devices
 
 
 	if (test_for_init == TRUE) {
-		std::cout << "Chroma Initialized.\n";
+		cout << "Chroma Initialized.\n";
 		while (true) { //Running all functions in a loop until you ctrl+c the programm
 			
 			BOOL Keyboard = impl_test.example_keyboard();
@@ -308,8 +345,8 @@ int main() {
 	}
 	else
 	{
-		std::cout << "Unable to initialize Chroma.\n";
-		std::cin.ignore();
+		cout << "Unable to initialize Chroma.\n";
+		cin.ignore();
 	}
 
 
