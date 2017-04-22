@@ -1,4 +1,5 @@
 #pragma once
+#include "include.h"
 #ifndef _CHROMASDKIMPL_H_
 #define _CHROMASDKIMPL_H_
 
@@ -40,7 +41,7 @@ public:
 	BOOL Initialize();
 
 
-	void ResetEffects(UINT DeviceType);
+	void ResetEffects(size_t DeviceType);
 	//Define your methods here
 	BOOL example_keyboard();
 	BOOL example_mouse();

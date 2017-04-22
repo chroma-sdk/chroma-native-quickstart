@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Template.h"
 
 #ifdef _WIN64
@@ -47,7 +46,7 @@ BOOL My_Chroma_Implementation::IsDeviceConnected(RZDEVICEID DeviceId)
 	if (QueryDevice != nullptr)
 	{
 		ChromaSDK::DEVICE_INFO_TYPE DeviceInfo = {};
-		RZRESULT Result = QueryDevice(DeviceId, DeviceInfo);
+		auto Result = QueryDevice(DeviceId, DeviceInfo);
 
 		return DeviceInfo.Connected;
 	}
@@ -76,7 +75,7 @@ BOOL My_Chroma_Implementation::Initialize()
 
 	if (Init == nullptr)
 	{
-		RZRESULT Result = RZRESULT_INVALID;
+		auto Result = RZRESULT_INVALID;
 		Init = reinterpret_cast<INIT>(GetProcAddress(m_ChromaSDKModule, "Init"));
 		if (Init)
 		{
@@ -116,7 +115,7 @@ BOOL My_Chroma_Implementation::Initialize()
 	return TRUE;
 }
 
-void My_Chroma_Implementation::ResetEffects(UINT DeviceType)
+void My_Chroma_Implementation::ResetEffects(size_t DeviceType)
 {
 	switch (DeviceType)
 	{
@@ -202,8 +201,8 @@ BOOL My_Chroma_Implementation::example_keyboard() {
 	// Source: http://developer.razerzone.com/chroma/razer-chroma-led-profiles/
 	// Take the super keyboard as standard, so your programm will work with every keyboard out of the box 
 
-	for (UINT row = 0; row < ChromaSDK::Keyboard::MAX_ROW; row++) {
-		for (UINT col = 0; col < ChromaSDK::Keyboard::MAX_COLUMN; col++) {
+	for (size_t row = 0; row < ChromaSDK::Keyboard::MAX_ROW; row++) {
+		for (size_t col = 0; col < ChromaSDK::Keyboard::MAX_COLUMN; col++) {
 			Example_keyboard_effect.Color[row][col] = ORANGE;   //Filling the whole matrix with the color orange == Setting background to orange
 		}
 
@@ -264,8 +263,8 @@ BOOL My_Chroma_Implementation::example_mouse() {
 	// Source: http://developer.razerzone.com/chroma/razer-chroma-led-profiles/
 	// Take the super mouse as standard, so your programm will work with every mouse out of the box 
 
-	for (UINT row = 0; row < ChromaSDK::Mouse::MAX_ROW; row++) {
-		for (UINT col = 0; col < ChromaSDK::Mouse::MAX_COLUMN; col++) {
+	for (size_t row = 0; row < ChromaSDK::Mouse::MAX_ROW; row++) {
+		for (size_t col = 0; col < ChromaSDK::Mouse::MAX_COLUMN; col++) {
 			Example_mouse_effect.Color[row][col] = ORANGE;   //Filling the whole matrix with the color orange == Setting background to orange
 		}
 	}
@@ -274,7 +273,7 @@ BOOL My_Chroma_Implementation::example_mouse() {
 	Example_mouse_effect.Color[2][3] = BLUE; // Only the last state of the key will be applied. So the scroll wheel will be blue, not red and not orange
 
 	//Now we apply the effect to the keyboard
-	RZRESULT Result_Mouse = CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM2, &Example_mouse_effect, nullptr);
+	auto Result_Mouse = CreateMouseEffect(ChromaSDK::Mouse::CHROMA_CUSTOM2, &Example_mouse_effect, nullptr);
 
 	//You can work with the Result as well, e.g. checking if everythings ok
 
@@ -292,14 +291,14 @@ BOOL My_Chroma_Implementation::example_mousemat() {
 	//e.g. the Razer logo is [14]
 	// Source: http://developer.razerzone.com/chroma/razer-chroma-led-profiles/
 
-	for (UINT count = 0; count < ChromaSDK::Mousepad::MAX_LEDS; count++) {
+	for (size_t count = 0; count < ChromaSDK::Mousepad::MAX_LEDS; count++) {
 		Example_mousemat_effect.Color[count] = ORANGE;  //Filling the whole matrix with the color orange == Setting background to orange
 	}
 
 	//a little bit advancec ;-)
 	//creating a simple(!) loading animation
-	RZRESULT Result_Mousemat;
-	for (UINT count = 0; count < ChromaSDK::Mousepad::MAX_LEDS; count++)
+	RZRESULT Result_Mousemat = 0;
+	for (size_t count = 0; count < ChromaSDK::Mousepad::MAX_LEDS; count++)
 	{
 		Example_mousemat_effect.Color[count] = BLUE;
 		Sleep(500);
@@ -326,16 +325,16 @@ int main() {
 	cout << "Starting...\n";
 	My_Chroma_Implementation impl_test; //Initialize ChromaSDK
 
-	BOOL test_for_init = impl_test.Initialize(); // Initialize all Chroma devices
+	auto test_for_init = impl_test.Initialize(); // Initialize all Chroma devices
 
 
 	if (test_for_init == TRUE) {
 		cout << "Chroma Initialized.\n";
 		while (true) { //Running all functions in a loop until you ctrl+c the programm
-			
-			BOOL Keyboard = impl_test.example_keyboard();
-			BOOL Mouse = impl_test.example_mouse();
-			BOOL Mousemat = impl_test.example_mousemat();
+
+			auto Keyboard = impl_test.example_keyboard();
+			auto Mouse = impl_test.example_mouse();
+			auto Mousemat = impl_test.example_mousemat();
 			Sleep(50); // The SDK doesn't like to get spammed 
 			
 			
